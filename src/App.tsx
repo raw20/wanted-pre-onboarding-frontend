@@ -1,11 +1,16 @@
 import "./App.css";
 import Router from "./routes/Router";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Footer from "./components/Footer/Footer";
 
 function App() {
+  const theme = createTheme();
+
   return (
-    <div className="App">
+    <ThemeProvider theme={theme}>
       <Router />
-    </div>
+      <Footer />
+    </ThemeProvider>
   );
 }
 
