@@ -120,7 +120,7 @@ function SignUpTextField() {
 
         <Grid container justifyContent="flex-end">
           <Grid item>
-            <Link to="/login">
+            <Link to="/signin">
               <Typography
                 variant="subtitle2"
                 gutterBottom

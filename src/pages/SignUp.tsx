@@ -7,12 +7,11 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { Navigate } from "react-router-dom";
 import SignUpTextField from "../components/Input/SignUpTextField";
+import { token } from "../utils/token";
 
 export default function SignUp() {
-  const token = window.localStorage.getItem("todoList");
-
   if (token) {
-    return <Navigate replace to="/error" />;
+    return <Navigate replace to="/todo" />;
   }
   return (
     <Container component="main" maxWidth="xs">
