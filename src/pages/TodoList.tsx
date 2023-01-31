@@ -1,7 +1,12 @@
 import React from "react";
+import Header from "../components/Header/Header";
 
 function TodoList() {
-  return <div></div>;
+  return (
+    <>
+      <Header />
+    </>
+  );
 }
 
 export default TodoList;
