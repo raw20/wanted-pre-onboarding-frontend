@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Main() {
-  return <div></div>;
+  const navigate = useNavigate();
+  const token = window.localStorage.getItem("todoList");
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/login");
+    } else {
+      navigate("/todo");
+    }
+  }, []);
+  return <></>;
 }
 
 export default Main;
