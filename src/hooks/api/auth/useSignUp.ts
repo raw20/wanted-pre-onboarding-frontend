@@ -22,7 +22,7 @@ function useSignUp() {
       )
       .then((response) => {
         alert("회원가입이 완료되었습니다.");
-        window.location.replace("/login");
+        window.location.replace("/signin");
         return response.data;
       })
       .catch((error: any) => {

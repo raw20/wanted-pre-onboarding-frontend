@@ -7,7 +7,7 @@ function Main() {
 
   useEffect(() => {
     if (!token) {
-      navigate("/login");
+      navigate("/signin");
     } else {
       navigate("/todo");
     }
