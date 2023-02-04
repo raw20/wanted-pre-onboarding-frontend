@@ -6,7 +6,7 @@ function useFetch() {
 
   useEffect(() => {
     getTodos();
-  }, [getTodos]);
+  }, []);
   return { todos, getTodos };
 }
 export default useFetch;
