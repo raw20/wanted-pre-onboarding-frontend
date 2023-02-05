@@ -21,7 +21,7 @@ function useLogin() {
         }
       )
       .then((response) => {
-        const token = response.data.token;
+        const token = response.data.access_token;
         window.localStorage.setItem("todoList", token);
         window.location.replace("/todo");
         return response.data.message;
