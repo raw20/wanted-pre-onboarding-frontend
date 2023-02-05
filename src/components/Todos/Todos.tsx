@@ -11,12 +11,8 @@ import EditTodo from "./EditTodo";
 function Todos() {
   const { todos } = useFetch();
   const updateTodo = useUpdateTodo();
-
   const [checkTodo, setCheckTodo] = useState<number[]>([]);
-
-  const [isEditTodo, setIsEditTodo] = useState(
-    Array.from({ length: todos.length }, () => false)
-  );
+  const [isEditTodo, setIsEditTodo] = useState<boolean[]>([]);
 
   const checkhandleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -72,7 +68,8 @@ function Todos() {
           >
             {isEditTodo[index] === true ? (
               <EditTodo
-                todos={todo}
+                todo={todo}
+                todos={todos}
                 setIsEditTodo={setIsEditTodo}
                 isEditTodo={isEditTodo}
                 index={index}
@@ -93,7 +90,8 @@ function Todos() {
           >
             {isEditTodo[index] === true ? null : (
               <TodoUtilButton
-                todos={todo}
+                todo={todo}
+                todos={todos}
                 setIsEditTodo={setIsEditTodo}
                 isEditTodo={isEditTodo}
                 index={index}

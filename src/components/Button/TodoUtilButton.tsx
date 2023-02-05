@@ -8,6 +8,7 @@ import PaperComponent from "../Paper/PaperComponent";
 import { IpropsEditTodoUtil } from "../../types/todo.t";
 
 function TodoUtilButton({
+  todo,
   todos,
   setIsEditTodo,
   isEditTodo,
@@ -16,6 +17,11 @@ function TodoUtilButton({
   const [openConfirm, setOpenConfirm] = useState(false);
 
   const editHandler = (event: MouseEvent<HTMLButtonElement>) => {
+    const todosEditBooleanArray = Array.from(
+      { length: todos.length },
+      () => false
+    );
+    setIsEditTodo(todosEditBooleanArray);
     let newIsEditTodo = [...isEditTodo];
     if (isEditTodo[index] === false) {
       newIsEditTodo[index] = true;
@@ -45,7 +51,7 @@ function TodoUtilButton({
         PaperComponent={PaperComponent}
         aria-labelledby="draggable-dialog-title"
       >
-        <DeleteDialog todos={todos} setOpenConfirm={setOpenConfirm} />
+        <DeleteDialog todo={todo} setOpenConfirm={setOpenConfirm} />
       </Dialog>
     </>
   );

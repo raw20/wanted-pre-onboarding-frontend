@@ -8,7 +8,7 @@ import { IPropsUpdateDialog } from "../../types/todo.t";
 import useUpdateTodo from "../../hooks/api/todo/useUpdateTodo";
 
 function UpdateDialog({
-  todos,
+  todo,
   editedTodo,
   isEditTodo,
   setIsEditTodo,
@@ -23,7 +23,7 @@ function UpdateDialog({
     if (isEditTodo[index] === true) {
       newIsEditTodo[index] = false;
       setIsEditTodo([...newIsEditTodo]);
-      updateTodo(todos.id, editedTodo, todos.isCompleted);
+      updateTodo(todo.id, editedTodo, todo.isCompleted);
       setOpenConfirm(false);
     }
   };

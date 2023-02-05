@@ -8,19 +8,20 @@ export interface Todo {
 }
 
 export interface IpropsEditTodoUtil {
-  todos: Todo;
+  todo: Todo;
+  todos: Todo[];
   setIsEditTodo: Dispatch<SetStateAction<boolean[]>>;
   isEditTodo: boolean[];
   index: number;
 }
 
 export interface IPropsDeleteDialog {
-  todos: Todo;
+  todo: Todo;
   setOpenConfirm: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface IPropsUpdateDialog {
-  todos: Todo;
+  todo: Todo;
   isEditTodo: boolean[];
   setIsEditTodo: Dispatch<SetStateAction<boolean[]>>;
   index: number;

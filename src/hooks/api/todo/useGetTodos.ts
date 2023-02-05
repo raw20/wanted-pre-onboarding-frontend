@@ -7,8 +7,8 @@ import { token } from "../../../utils/token";
 function useGetTodos() {
   const [todos, setTodos] = useState<Todo[]>([]);
 
-  const getTodos = async () =>
-    await axios
+  const getTodos = (): Promise<Todo[]> =>
+    axios
       .get(`${PORT}/todos`, {
         headers: {
           Authorization: `Bearer ${token}`,

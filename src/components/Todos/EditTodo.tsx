@@ -10,7 +10,7 @@ import PaperComponent from "../Paper/PaperComponent";
 import UpdateDialog from "../Dialog/UpdateDialog";
 
 function EditTodo({
-  todos,
+  todo,
   setIsEditTodo,
   isEditTodo,
   index,
@@ -53,7 +53,7 @@ function EditTodo({
           id="todo"
           name="todo"
           size="small"
-          label={todos.todo}
+          label={todo.todo}
           autoFocus
           sx={{ width: 250 }}
         />
@@ -74,7 +74,7 @@ function EditTodo({
         aria-labelledby="draggable-dialog-title"
       >
         <UpdateDialog
-          todos={todos}
+          todo={todo}
           isEditTodo={isEditTodo}
           setIsEditTodo={setIsEditTodo}
           index={index}

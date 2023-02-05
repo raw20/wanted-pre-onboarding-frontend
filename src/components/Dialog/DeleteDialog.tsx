@@ -6,7 +6,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import useDeleteTodo from "../../hooks/api/todo/useDeleteTodo";
 import { IPropsDeleteDialog } from "../../types/todo.t";
 
-function DeleteDialog({ todos, setOpenConfirm }: IPropsDeleteDialog) {
+function DeleteDialog({ todo, setOpenConfirm }: IPropsDeleteDialog) {
   const deleteTodo = useDeleteTodo();
 
   return (
@@ -25,7 +25,7 @@ function DeleteDialog({ todos, setOpenConfirm }: IPropsDeleteDialog) {
         </Button>
         <Button
           onClick={() => {
-            deleteTodo(todos.id);
+            deleteTodo(todo.id);
             setOpenConfirm(false);
           }}
         >
