@@ -4,11 +4,11 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import useCreateTodo from "../../hooks/api/todo/useCreateTodo";
 import Container from "@mui/material/Container";
+import useFetch from "../../hooks/useFetch";
 
 function TodoTextField() {
-  const { createTodo, feedbackMessage } = useCreateTodo();
+  const { createTodo, feedbackMessage } = useFetch();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);

@@ -4,13 +4,11 @@ import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
 import Checkbox from "@mui/material/Checkbox";
 import TodoUtilButton from "../Button/TodoUtilButton";
-import useUpdateTodo from "../../hooks/api/todo/useUpdateTodo";
 import useFetch from "../../hooks/useFetch";
 import EditTodo from "./EditTodo";
 
 function Todos() {
-  const { todos } = useFetch();
-  const updateTodo = useUpdateTodo();
+  const { todos, updateTodo } = useFetch();
   const [checkTodo, setCheckTodo] = useState<number[]>([]);
   const [isEditTodo, setIsEditTodo] = useState<boolean[]>([]);
 

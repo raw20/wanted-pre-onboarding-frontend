@@ -5,7 +5,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { IPropsUpdateDialog } from "../../types/todo.t";
-import useUpdateTodo from "../../hooks/api/todo/useUpdateTodo";
+import useFetch from "../../hooks/useFetch";
 
 function UpdateDialog({
   todo,
@@ -15,7 +15,7 @@ function UpdateDialog({
   index,
   setOpenConfirm,
 }: IPropsUpdateDialog) {
-  const updateTodo = useUpdateTodo();
+  const { updateTodo } = useFetch();
 
   const updateHandler = () => {
     console.log(editedTodo);

@@ -3,11 +3,11 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import useDeleteTodo from "../../hooks/api/todo/useDeleteTodo";
+import useFetch from "../../hooks/useFetch";
 import { IPropsDeleteDialog } from "../../types/todo.t";
 
 function DeleteDialog({ todo, setOpenConfirm }: IPropsDeleteDialog) {
-  const deleteTodo = useDeleteTodo();
+  const { deleteTodo } = useFetch();
 
   return (
     <>
