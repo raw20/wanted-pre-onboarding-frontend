@@ -2,10 +2,10 @@ import axios, { AxiosError } from "axios";
 import { useState } from "react";
 import { Todo } from "../../../types/todo.t";
 import { PORT } from "../../../utils/port";
-import { token } from "../../../utils/token";
 
 function useGetTodos() {
   const [todos, setTodos] = useState<Todo[]>([]);
+  const token = window.localStorage.getItem("todoList");
 
   const getTodos = (): Promise<Todo[]> =>
     axios

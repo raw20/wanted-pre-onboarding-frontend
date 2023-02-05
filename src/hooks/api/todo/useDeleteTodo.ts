@@ -1,8 +1,9 @@
 import axios, { AxiosError } from "axios";
 import { PORT } from "../../../utils/port";
-import { token } from "../../../utils/token";
 
 function useDeleteTodo() {
+  const token = window.localStorage.getItem("todoList");
+
   const deleteTodo = (id: number) =>
     axios
       .delete(`${PORT}/todos/${id}`, {

@@ -1,10 +1,10 @@
 import axios, { AxiosError } from "axios";
 import { useState } from "react";
 import { PORT } from "../../../utils/port";
-import { token } from "../../../utils/token";
 
 function useCreateTodo() {
   const [feedbackMessage, setFeedbackMessage] = useState(" ");
+  const token = window.localStorage.getItem("todoList");
 
   const createTodo = (todo: FormDataEntryValue) =>
     axios

@@ -1,8 +1,9 @@
 import axios, { AxiosError } from "axios";
 import { PORT } from "../../../utils/port";
-import { token } from "../../../utils/token";
 
 function useUpdateTodo() {
+  const token = window.localStorage.getItem("todoList");
+
   const updateTodo = (
     id: number,
     todo: FormDataEntryValue,
