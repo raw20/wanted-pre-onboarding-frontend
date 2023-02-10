@@ -22,13 +22,13 @@ function TodoTextField({ todos, setTodos }: ITodosState) {
     setTodoDefaultValue("");
   };
   return (
-    <Container sx={{ display: "flex", justifyContent: "center" }}>
-      <Box
-        component="form"
-        onSubmit={handleSubmit}
-        noValidate
-        sx={{ display: "flex", flexDirection: "column", mt: 1 }}
-      >
+    <Container
+      component="form"
+      onSubmit={handleSubmit}
+      noValidate
+      sx={{ display: "flex", justifyContent: "center" }}
+    >
+      <Box sx={{ display: "flex", flexDirection: "column", mt: 1 }}>
         <TextField
           data-testid="new-todo-input"
           margin="normal"
