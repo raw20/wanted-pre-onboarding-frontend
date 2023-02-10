@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -22,13 +22,13 @@ function TodoTextField({ todos, setTodos }: ITodosState) {
     setTodoDefaultValue("");
   };
   return (
-    <Container
-      component="form"
-      noValidate
-      onSubmit={handleSubmit}
-      sx={{ display: "flex", justifyContent: "center" }}
-    >
-      <Box sx={{ display: "flex", flexDirection: "column", mt: 1 }}>
+    <Container sx={{ display: "flex", justifyContent: "center" }}>
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        noValidate
+        sx={{ display: "flex", flexDirection: "column", mt: 1 }}
+      >
         <TextField
           data-testid="new-todo-input"
           margin="normal"
