@@ -4,7 +4,6 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import DeleteDialog from "../Dialog/DeleteDialog";
 import Dialog from "@mui/material/Dialog";
-import PaperComponent from "../Paper/PaperComponent";
 import { IpropsEditTodoUtil } from "../../types/todo.t";
 
 function TodoUtilButton({
@@ -48,12 +47,7 @@ function TodoUtilButton({
       <IconButton data-testid="delete-button" onClick={deleteHandler}>
         <DeleteOutlinedIcon />
       </IconButton>
-      <Dialog
-        open={openConfirm}
-        onClose={ConfirmModalCloseHandler}
-        PaperComponent={PaperComponent}
-        aria-labelledby="draggable-dialog-title"
-      >
+      <Dialog open={openConfirm} onClose={ConfirmModalCloseHandler}>
         <DeleteDialog
           todo={todo}
           todos={todos}
