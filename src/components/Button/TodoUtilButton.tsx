@@ -1,4 +1,4 @@
-import React, { MouseEvent, useState } from "react";
+import React, { MouseEvent, useEffect, useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
@@ -16,12 +16,14 @@ function TodoUtilButton({
   index,
 }: IpropsEditTodoUtil) {
   const [openConfirm, setOpenConfirm] = useState(false);
-
+  const todosEditBooleanArray = Array.from(
+    { length: todos.length },
+    () => false
+  );
+  useEffect(() => {
+    setIsEditTodo(todosEditBooleanArray);
+  }, []);
   const editHandler = (event: MouseEvent<HTMLButtonElement>) => {
-    const todosEditBooleanArray = Array.from(
-      { length: todos.length },
-      () => false
-    );
     setIsEditTodo(todosEditBooleanArray);
     let newIsEditTodo = [...isEditTodo];
     if (isEditTodo[index] === false) {
