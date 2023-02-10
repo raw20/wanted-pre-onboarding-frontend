@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -11,7 +11,6 @@ import { ITodosState } from "../../types/todo.t";
 
 function TodoTextField({ todos, setTodos }: ITodosState) {
   const { createTodo, feedbackMessage } = useCreateTodo(api);
-  const [todoDefault, setTodoDefault] = useState(" ");
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -19,16 +18,15 @@ function TodoTextField({ todos, setTodos }: ITodosState) {
     const todo: FormDataEntryValue = data.get("todo") ?? "";
     const newTodos = await createTodo(todo);
     setTodos([...todos, newTodos]);
-    setTodoDefault("");
   };
   return (
-    <Container
-      component="form"
-      noValidate
-      onSubmit={handleSubmit}
-      sx={{ display: "flex", justifyContent: "center" }}
-    >
-      <Box sx={{ display: "flex", flexDirection: "column", mt: 1 }}>
+    <Container sx={{ display: "flex", justifyContent: "center" }}>
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        noValidate
+        sx={{ display: "flex", flexDirection: "column", mt: 1 }}
+      >
         <TextField
           data-testid="new-todo-input"
           margin="normal"
@@ -37,10 +35,6 @@ function TodoTextField({ todos, setTodos }: ITodosState) {
           label="Enter your todo"
           name="todo"
           autoFocus
-          value={todoDefault}
-          onChange={(newValue) => {
-            setTodoDefault(newValue.target.value);
-          }}
         />
         <Grid item xs={12}>
           <Typography
