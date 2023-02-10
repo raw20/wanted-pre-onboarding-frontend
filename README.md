@@ -45,4 +45,4 @@ npm start
 
 ## 배포링크
 
-https://63e624194d4c0400082c8d58--magical-dieffenbachia-a4eca1.netlify.app/signin
+https://63e624194d4c0400082c8d58--magical-dieffenbachia-a4eca1.netlify.app
