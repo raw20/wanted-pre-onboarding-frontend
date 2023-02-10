@@ -11,6 +11,8 @@ import UpdateDialog from "../Dialog/UpdateDialog";
 
 function EditTodo({
   todo,
+  todos,
+  setTodos,
   setIsEditTodo,
   isEditTodo,
   index,
@@ -34,7 +36,6 @@ function EditTodo({
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const todo: FormDataEntryValue = data.get("todo") ?? "";
-    console.log(todo);
     setEditedTodo(todo);
     setOpenConfirm(true);
   };
@@ -75,7 +76,9 @@ function EditTodo({
       >
         <UpdateDialog
           todo={todo}
+          todos={todos}
           isEditTodo={isEditTodo}
+          setTodos={setTodos}
           setIsEditTodo={setIsEditTodo}
           index={index}
           editedTodo={editedTodo}

@@ -1,8 +1,8 @@
 import axios, { AxiosError } from "axios";
 import { useState } from "react";
-import { PORT } from "../../../utils/port";
 
 function useSignUp() {
+  const api = "https://pre-onboarding-selection-task.shop";
   const [feedbackMessage, setFeedbackMessage] = useState(" ");
 
   const signUpController = (
@@ -11,7 +11,7 @@ function useSignUp() {
   ) =>
     axios
       .post(
-        `${PORT}/auth/signup`,
+        `${api}/auth/signup`,
         {
           email: email,
           password: password,

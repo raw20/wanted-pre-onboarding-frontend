@@ -1,7 +1,6 @@
 import axios, { AxiosError } from "axios";
-import { PORT } from "../../../utils/port";
 
-function useUpdateTodo() {
+function useUpdateTodo(api: string) {
   const token = window.localStorage.getItem("todoList");
 
   const updateTodo = (
@@ -11,7 +10,7 @@ function useUpdateTodo() {
   ) =>
     axios
       .put(
-        `${PORT}/todos/${id}`,
+        `${api}/todos/${id}`,
         {
           todo: todo,
           isCompleted: isCompleted,
