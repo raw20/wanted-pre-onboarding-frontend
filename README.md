@@ -75,4 +75,4 @@ npm start
 
 ## 배포링크
 
-https://63e624194d4c0400082c8d58--magical-dieffenbachia-a4eca1.netlify.app
+https://63e636406cf00e00080697cc--magical-dieffenbachia-a4eca1.netlify.app
