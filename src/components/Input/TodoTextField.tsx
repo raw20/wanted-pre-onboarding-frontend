@@ -11,7 +11,7 @@ import { ITodosState } from "../../types/todo.t";
 
 function TodoTextField({ todos, setTodos }: ITodosState) {
   const { createTodo, feedbackMessage } = useCreateTodo(api);
-  const [todoDefault, setTodoDefault] = useState(" ");
+  const [todoDefaultValue, setTodoDefaultValue] = useState(" ");
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -19,7 +19,7 @@ function TodoTextField({ todos, setTodos }: ITodosState) {
     const todo: FormDataEntryValue = data.get("todo") ?? "";
     const newTodos = await createTodo(todo);
     setTodos([...todos, newTodos]);
-    setTodoDefault("");
+    setTodoDefaultValue("");
   };
   return (
     <Container
@@ -37,9 +37,9 @@ function TodoTextField({ todos, setTodos }: ITodosState) {
           label="Enter your todo"
           name="todo"
           autoFocus
-          value={todoDefault}
+          value={todoDefaultValue}
           onChange={(newValue) => {
-            setTodoDefault(newValue.target.value);
+            setTodoDefaultValue(newValue.target.value);
           }}
         />
         <Grid item xs={12}>
