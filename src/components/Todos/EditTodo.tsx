@@ -6,7 +6,6 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import CloseIcon from "@mui/icons-material/Close";
 import Dialog from "@mui/material/Dialog";
 import { IpropsEditTodoUtil } from "../../types/todo.t";
-import PaperComponent from "../Paper/PaperComponent";
 import UpdateDialog from "../Dialog/UpdateDialog";
 
 function EditTodo({
@@ -68,12 +67,7 @@ function EditTodo({
         </Box>
       </Box>
 
-      <Dialog
-        open={openConfirm}
-        onClose={ConfirmModalCloseHandler}
-        PaperComponent={PaperComponent}
-        aria-labelledby="draggable-dialog-title"
-      >
+      <Dialog open={openConfirm} onClose={ConfirmModalCloseHandler}>
         <UpdateDialog
           todo={todo}
           todos={todos}
