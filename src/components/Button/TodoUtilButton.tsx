@@ -10,6 +10,7 @@ import { IpropsEditTodoUtil } from "../../types/todo.t";
 function TodoUtilButton({
   todo,
   todos,
+  setTodos,
   setIsEditTodo,
   isEditTodo,
   index,
@@ -51,7 +52,12 @@ function TodoUtilButton({
         PaperComponent={PaperComponent}
         aria-labelledby="draggable-dialog-title"
       >
-        <DeleteDialog todo={todo} setOpenConfirm={setOpenConfirm} />
+        <DeleteDialog
+          todo={todo}
+          todos={todos}
+          setTodos={setTodos}
+          setOpenConfirm={setOpenConfirm}
+        />
       </Dialog>
     </>
   );

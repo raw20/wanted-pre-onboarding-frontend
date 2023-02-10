@@ -1,18 +1,16 @@
 import axios, { AxiosError } from "axios";
-import { PORT } from "../../../utils/port";
 
-function useDeleteTodo() {
+function useDeleteTodo(api: String) {
   const token = window.localStorage.getItem("todoList");
 
   const deleteTodo = (id: number) =>
     axios
-      .delete(`${PORT}/todos/${id}`, {
+      .delete(`${api}/todos/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => {
-        console.log(response);
         return response.data;
       })
       .catch((error: any) => {

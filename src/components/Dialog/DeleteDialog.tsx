@@ -3,11 +3,23 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import useFetch from "../../hooks/useFetch";
+import useDeleteTodo from "../../hooks/api/todo/useDeleteTodo";
 import { IPropsDeleteDialog } from "../../types/todo.t";
+import { api } from "../../utils/api";
 
-function DeleteDialog({ todo, setOpenConfirm }: IPropsDeleteDialog) {
-  const { deleteTodo } = useFetch();
+function DeleteDialog({
+  todo,
+  todos,
+  setTodos,
+  setOpenConfirm,
+}: IPropsDeleteDialog) {
+  const deleteTodo = useDeleteTodo(api);
+
+  const deleteHandler = () => {
+    deleteTodo(todo.id);
+    setTodos(todos.filter((todoElement) => todoElement.id !== todo.id));
+    setOpenConfirm(false);
+  };
 
   return (
     <>
@@ -23,14 +35,7 @@ function DeleteDialog({ todo, setOpenConfirm }: IPropsDeleteDialog) {
         <Button autoFocus onClick={() => setOpenConfirm(false)}>
           취소
         </Button>
-        <Button
-          onClick={() => {
-            deleteTodo(todo.id);
-            setOpenConfirm(false);
-          }}
-        >
-          삭제
-        </Button>
+        <Button onClick={deleteHandler}>삭제</Button>
       </DialogActions>
     </>
   );

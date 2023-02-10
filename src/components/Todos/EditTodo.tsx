@@ -11,6 +11,8 @@ import UpdateDialog from "../Dialog/UpdateDialog";
 
 function EditTodo({
   todo,
+  todos,
+  setTodos,
   setIsEditTodo,
   isEditTodo,
   index,
@@ -34,7 +36,6 @@ function EditTodo({
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const todo: FormDataEntryValue = data.get("todo") ?? "";
-    console.log(todo);
     setEditedTodo(todo);
     setOpenConfirm(true);
   };
@@ -48,7 +49,7 @@ function EditTodo({
         sx={{ display: "flex" }}
       >
         <TextField
-          data-testid="new-todo-input"
+          data-testid="modify-input"
           required
           id="todo"
           name="todo"
@@ -58,10 +59,10 @@ function EditTodo({
           sx={{ width: 250 }}
         />
         <Box sx={{ display: "flex", ml: 3 }}>
-          <IconButton type="submit" data-testid="modify-button">
+          <IconButton type="submit" data-testid="submit-button">
             <EditOutlinedIcon />
           </IconButton>
-          <IconButton data-testid="delete-button" onClick={cancelHandler}>
+          <IconButton data-testid="cancel-button" onClick={cancelHandler}>
             <CloseIcon />
           </IconButton>
         </Box>
@@ -75,7 +76,9 @@ function EditTodo({
       >
         <UpdateDialog
           todo={todo}
+          todos={todos}
           isEditTodo={isEditTodo}
+          setTodos={setTodos}
           setIsEditTodo={setIsEditTodo}
           index={index}
           editedTodo={editedTodo}

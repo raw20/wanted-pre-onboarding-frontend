@@ -5,25 +5,32 @@ import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import useFetch from "../../hooks/useFetch";
+import useCreateTodo from "../../hooks/api/todo/useCreateTodo";
+import { api } from "../../utils/api";
+import { ITodosState } from "../../types/todo.t";
 
-function TodoTextField() {
-  const { createTodo, feedbackMessage } = useFetch();
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+function TodoTextField({ todos, setTodos }: ITodosState) {
+  const { createTodo, feedbackMessage } = useCreateTodo(api);
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const todo: FormDataEntryValue = data.get("todo") ?? "";
-    createTodo(todo);
+    const newTodos = await createTodo(todo);
+    setTodos([...todos, newTodos]);
   };
-
   return (
-    <Container>
-      <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+    <Container sx={{ display: "flex", justifyContent: "center" }}>
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        noValidate
+        sx={{ display: "flex", flexDirection: "column", mt: 1 }}
+      >
         <TextField
           data-testid="new-todo-input"
           margin="normal"
           required
-          fullWidth
           id="todo"
           label="Enter your todo"
           name="todo"
@@ -42,6 +49,8 @@ function TodoTextField() {
             {feedbackMessage}
           </Typography>
         </Grid>
+      </Box>
+      <Box sx={{ ml: 2, mt: 1 }}>
         <Grid container justifyContent="center">
           <Button
             data-testid="new-todo-add-button"

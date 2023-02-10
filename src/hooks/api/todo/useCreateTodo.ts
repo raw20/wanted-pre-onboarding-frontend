@@ -1,15 +1,14 @@
 import axios, { AxiosError } from "axios";
 import { useState } from "react";
-import { PORT } from "../../../utils/port";
 
-function useCreateTodo() {
+function useCreateTodo(api: string) {
   const [feedbackMessage, setFeedbackMessage] = useState(" ");
   const token = window.localStorage.getItem("todoList");
 
   const createTodo = (todo: FormDataEntryValue) =>
     axios
       .post(
-        `${PORT}/todos`,
+        `${api}/todos`,
         {
           todo: todo,
         },
@@ -21,7 +20,7 @@ function useCreateTodo() {
         }
       )
       .then((response) => {
-        if (response.status === 201) setFeedbackMessage(response.statusText);
+        setFeedbackMessage(response.statusText);
         return response.data;
       })
       .catch((error: any) => {

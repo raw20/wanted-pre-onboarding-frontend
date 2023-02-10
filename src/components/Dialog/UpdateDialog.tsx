@@ -5,25 +5,36 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { IPropsUpdateDialog } from "../../types/todo.t";
-import useFetch from "../../hooks/useFetch";
+import useUpdateTodo from "../../hooks/api/todo/useUpdateTodo";
+import { api } from "../../utils/api";
 
 function UpdateDialog({
   todo,
+  todos,
   editedTodo,
   isEditTodo,
+  setTodos,
   setIsEditTodo,
   index,
   setOpenConfirm,
 }: IPropsUpdateDialog) {
-  const { updateTodo } = useFetch();
+  const updateTodo = useUpdateTodo(api);
 
-  const updateHandler = () => {
-    console.log(editedTodo);
+  const updateHandler = async () => {
     let newIsEditTodo = [...isEditTodo];
+    const cloneTodos = [...todos];
+
     if (isEditTodo[index] === true) {
       newIsEditTodo[index] = false;
       setIsEditTodo([...newIsEditTodo]);
-      updateTodo(todo.id, editedTodo, todo.isCompleted);
+      const updatedTodo = await updateTodo(
+        todo.id,
+        editedTodo,
+        todo.isCompleted
+      );
+      cloneTodos.splice(index, 1, updatedTodo);
+
+      setTodos(cloneTodos);
       setOpenConfirm(false);
     }
   };

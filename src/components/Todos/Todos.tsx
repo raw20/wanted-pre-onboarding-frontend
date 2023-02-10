@@ -4,27 +4,33 @@ import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
 import Checkbox from "@mui/material/Checkbox";
 import TodoUtilButton from "../Button/TodoUtilButton";
-import useFetch from "../../hooks/useFetch";
 import EditTodo from "./EditTodo";
+import useUpdateTodo from "../../hooks/api/todo/useUpdateTodo";
+import { api } from "../../utils/api";
+import { ITodosState } from "../../types/todo.t";
 
-function Todos() {
-  const { todos, updateTodo } = useFetch();
+function Todos({ todos, setTodos }: ITodosState) {
+  const updateTodo = useUpdateTodo(api);
   const [checkTodo, setCheckTodo] = useState<number[]>([]);
   const [isEditTodo, setIsEditTodo] = useState<boolean[]>([]);
 
-  const checkhandleChange = (
+  const checkhandleChange = async (
     event: React.ChangeEvent<HTMLInputElement>,
     id: number,
-    todo: string
+    todo: string,
+    index: number
   ) => {
     if (event.target.checked) {
       setCheckTodo((prev) => [...prev, id]);
     } else {
       setCheckTodo(checkTodo.filter((todoId) => todoId !== id));
     }
-    updateTodo(id, todo, event.target.checked);
-  };
+    const cloneTodos = [...todos];
+    const checkedTodo = await updateTodo(id, todo, event.target.checked);
+    cloneTodos.splice(index, 1, checkedTodo);
 
+    setTodos(cloneTodos);
+  };
   return (
     <Container component="main" maxWidth="xs" sx={{ mt: 5 }}>
       {todos?.map((todo, index) => (
@@ -48,7 +54,9 @@ function Todos() {
           >
             <Checkbox
               checked={checkTodo.includes(todo.id) ? true : false}
-              onChange={(event) => checkhandleChange(event, todo.id, todo.todo)}
+              onChange={(event) =>
+                checkhandleChange(event, todo.id, todo.todo, index)
+              }
               inputProps={{ "aria-label": "controlled" }}
             />
           </Grid>
@@ -61,6 +69,7 @@ function Todos() {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              color: todo.isCompleted ? "#666" : "#000",
               textDecoration: todo.isCompleted ? "line-through" : "none",
             }}
           >
@@ -68,6 +77,7 @@ function Todos() {
               <EditTodo
                 todo={todo}
                 todos={todos}
+                setTodos={setTodos}
                 setIsEditTodo={setIsEditTodo}
                 isEditTodo={isEditTodo}
                 index={index}
@@ -90,6 +100,7 @@ function Todos() {
               <TodoUtilButton
                 todo={todo}
                 todos={todos}
+                setTodos={setTodos}
                 setIsEditTodo={setIsEditTodo}
                 isEditTodo={isEditTodo}
                 index={index}
